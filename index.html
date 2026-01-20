@@ -482,7 +482,10 @@ function toYouTubeEmbed(url){
 function openVideoModal(title, url, hint){
   $("#videoModalTitle").textContent = title || "Vidéo";
   $("#videoModalHint").textContent = hint || "";
-  $("#videoModalFrame").src = toYouTubeEmbed(url);
+  const base = toYouTubeEmbed(url);
+  const sep = base.includes("?") ? "&" : "?";
+  const origin = encodeURIComponent(location.origin);
+  $("#videoModalFrame").src = `${base}${sep}origin=${origin}&autoplay=1&rel=0`;
   $("#videoModal").classList.add("show");
   $("#videoModal").setAttribute("aria-hidden", "false");
 }
@@ -1109,3 +1112,4 @@ renderAll();
 </script>
 </body>
 </html>
+
