@@ -36,12 +36,318 @@
     .workout-view{display:grid;gap:12px}.session-header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.session-header h2{font-size:15px}.session-tabs{display:flex;flex-wrap:wrap;gap:8px;padding:2px 0 4px}.session-tabs .tab{min-height:42px}.session-tabs .tab.active{border-color:var(--green);background:#7affc81a}.top-tabs .tab{font-weight:650;min-height:43px}@media(max-width:620px){.session-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.session-tabs .tab{font-size:12px;padding:9px 6px}.top-tabs{overflow-x:auto}.top-tabs .tab{flex:none;white-space:nowrap}}
     .strength-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.strength-grid label{font-size:12px;color:var(--muted)}.strength-grid label input,.strength-grid label select{margin-top:6px}.strength-result{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0}.strength-table{overflow-x:auto}.strength-table table{min-width:660px}.strength-table .btn{white-space:nowrap}.strength-help{font-size:12px;color:var(--muted);line-height:1.65}.strength-positive{color:var(--green)}
     .muscle-view{display:grid;gap:14px}.muscle-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.muscle-controls select{max-width:270px}.muscle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:12px}.muscle-tile{border:1px solid var(--border);border-radius:13px;padding:13px;background:#ffffff07;min-width:0;text-align:left;color:var(--text);cursor:pointer}.muscle-tile:hover,.muscle-tile.selected{border-color:var(--accent);background:#7aa2ff13}.muscle-tile strong{font-size:14px}.muscle-metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.muscle-metrics span{font-size:12px;color:var(--muted)}.muscle-metrics b{display:block;color:var(--text);font-size:16px}.muscle-tag{display:inline-block;border-radius:30px;padding:4px 8px;font-size:11px;font-weight:650;background:#ffffff10;border:1px solid var(--border)}.muscle-tag.up{color:var(--green);border-color:#7affc855}.muscle-tag.down{color:#ff9999;border-color:#ff6b6b55}.muscle-tag.flat{color:#ffd88a;border-color:#ffd16655}.muscle-tag.na{color:var(--muted)}.muscle-chart{height:270px;position:relative}.muscle-table{width:100%;border-collapse:collapse}.muscle-table td,.muscle-table th{padding:10px 8px}.muscle-explanation{line-height:1.65;font-size:13px;color:var(--muted)}
-  </style>
+  
+/* ─────────────────────────────────────────────────────────────
+   HYPERTROPHIE TRACKER — STUDIO UI 2026
+   Refonte visuelle non destructive : logique, IDs et données préservés
+   ───────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{
+  color-scheme:dark;
+  --bg:#080e18;--card:#111b2b;--text:#f1f7ff;--muted:#93a6be;
+  --accent:#8baeff;--green:#6ff0bc;--red:#ff7d91;
+  --border:rgba(164,194,233,.14);--radius:20px;
+  --shadow:0 18px 50px rgba(0,5,18,.25);
+  --surface:#111c2e;--surface-hi:#17243a;--mint:#6ff0bc;
+}
+html{scroll-behavior:smooth;scroll-padding-top:140px}
+body{
+  min-height:100dvh;
+  background:
+    radial-gradient(ellipse 720px 440px at 7% -100px,rgba(38,99,151,.24),transparent 75%),
+    radial-gradient(ellipse 600px 390px at 95% 8%,rgba(52,121,117,.13),transparent 75%),
+    linear-gradient(180deg,#09111d 0%,#080e18 48%,#090e19 100%);
+  font-family:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;
+  letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(rgba(166,203,245,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(166,203,245,.018) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(to bottom,#000,transparent 75%);
+}
+::selection{background:rgba(111,240,188,.26);color:#fff}
+.wrap,main{max-width:1460px;padding-left:clamp(16px,3.1vw,42px);padding-right:clamp(16px,3.1vw,42px)}
+main{padding-top:27px;padding-bottom:70px}
+h1,h2,h3,.ex-name,.mini .val{font-family:'Manrope','DM Sans',sans-serif;letter-spacing:-.035em}
+h2{font-size:16px;font-weight:800}
+h3{font-weight:800}
+.sub,.hint,.muted{color:var(--muted)}
+.hint{font-size:12px;line-height:1.65}
+.sub{font-size:13px}
+a{color:#9bbdff}
+a:hover{color:#c0d4ff}
+header.app-header{
+  position:sticky;top:0;z-index:5;
+  background:rgba(8,14,25,.88);
+  border-bottom:1px solid rgba(142,182,226,.13);
+  backdrop-filter:blur(24px) saturate(155%);
+  -webkit-backdrop-filter:blur(24px) saturate(155%);
+  box-shadow:0 8px 38px rgba(0,0,0,.12)
+}
+.app-header .wrap{padding-top:19px;padding-bottom:11px}
+.app-headline{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.brand-lockup{display:flex;align-items:center;gap:15px;min-width:0}
+.brand-symbol{
+  position:relative;flex:none;display:grid;place-items:center;width:55px;height:55px;
+  border-radius:17px;
+  background:linear-gradient(145deg,#7af4c5 0%,#57c8ae 52%,#4c8ca5 100%);
+  box-shadow:0 8px 30px rgba(70,205,166,.17),inset 0 1px 1px rgba(255,255,255,.5);
+  color:#07251e;font:900 30px/1 'Manrope',sans-serif;letter-spacing:-.11em;
+  transform:rotate(-3deg)
+}
+.brand-symbol span{transform:rotate(3deg) translateX(-1px)}
+.brand-symbol i{position:absolute;width:9px;height:9px;right:-3px;top:-3px;background:#d8ffe7;border:3px solid #0c1722;border-radius:50%}
+.brand-copy{min-width:0}
+.brand-eyebrow{display:flex;align-items:center;gap:8px;color:#8cecc7;font-size:10px;font-weight:800;letter-spacing:.16em;margin-bottom:5px}
+.brand-dot{width:6px;height:6px;background:#77f1bd;border-radius:50%;box-shadow:0 0 0 4px rgba(111,240,188,.1)}
+.brand-edition{color:#6f849d;font-weight:700}
+.app-header h1{font-size:clamp(19px,2vw,25px);font-weight:800;margin:0 0 3px;line-height:1.15}
+.app-header h1 span{color:#7ff0c1}
+.brand-sub{font-size:12px;color:#8ca0b8}
+.header-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cardio-pill{display:flex;gap:9px;align-items:center;border:1px solid rgba(111,240,188,.2);background:rgba(111,240,188,.055);padding:10px 13px;color:#b9ccdf;border-radius:12px}
+.cardio-pill .pill-symbol{font-size:18px;color:#7ff0c1;line-height:1}
+.cardio-pill .pill-caption{font-size:9px;font-weight:800;letter-spacing:.1em;color:#7eb6a6}
+.cardio-pill b{font-size:12px;font-weight:800;white-space:nowrap}
+.cardio-pill em{color:#507568;font-style:normal;padding:0 2px}
+.btn,.tab,.file-label{
+  position:relative;isolation:isolate;
+  border:1px solid rgba(161,190,226,.17);
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+  color:#e3ecfb;border-radius:12px;padding:10px 14px;
+  font-size:12px;font-weight:700;line-height:1.25;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.btn:hover,.tab:hover,.file-label:hover{border-color:rgba(139,174,255,.65);background:rgba(139,174,255,.1);transform:translateY(-1px)}
+.btn:active,.tab:active{transform:translateY(0)}
+.btn:focus-visible,.tab:focus-visible,.thumb:focus-visible,.muscle-tile:focus-visible,
+input:focus-visible,select:focus-visible,textarea:focus-visible,.file-label:focus-visible{
+  outline:2px solid #7df2c4;outline-offset:3px
+}
+.btn.primary{
+  color:#09291f;background:linear-gradient(130deg,#91f5cb,#67dbb4);
+  border-color:#a2ffdb;box-shadow:0 6px 22px rgba(74,206,158,.14);
+  font-weight:800
+}
+.btn.primary:hover{background:linear-gradient(130deg,#b0ffe0,#83ecc6);box-shadow:0 8px 30px rgba(74,206,158,.25)}
+.btn.good{color:#8df2c8;border-color:rgba(111,240,188,.28);background:rgba(111,240,188,.08)}
+.btn.danger{color:#ffb0bd;border-color:rgba(255,125,145,.28);background:rgba(255,125,145,.055)}
+.btn.danger:hover{background:rgba(255,125,145,.12);border-color:rgba(255,125,145,.58)}
+.btn.small{border-radius:9px;padding:8px 10px}
+.btn:disabled,.tab:disabled{opacity:.38;cursor:not-allowed;transform:none;box-shadow:none}
+.top-tabs{gap:6px;padding:18px 0 0;scrollbar-width:thin;scrollbar-color:#30445d transparent}
+.top-tabs .tab{
+  flex:none;min-height:45px;padding:11px 17px;border-radius:12px;
+  background:transparent;border-color:transparent;color:#8fa5bf;
+  font-size:13px;font-weight:800;white-space:nowrap;
+}
+.top-tabs .tab:hover{color:#eaf7ff;background:rgba(255,255,255,.045);border-color:transparent}
+.top-tabs .tab.active{
+  color:#91f5cb;background:rgba(111,240,188,.09);
+  border-color:rgba(111,240,188,.2);
+  box-shadow:inset 0 -2px 0 rgba(111,240,188,.7)
+}
+.grid{gap:19px}
+@media(min-width:1100px){.grid{grid-template-columns:minmax(0,1.55fr) minmax(320px,.68fr)}}
+.workout-view,.builder-view,.profile-view,.muscle-view{gap:19px}
+.card{
+  background:linear-gradient(160deg,rgba(21,33,52,.98),rgba(13,23,39,.99) 80%);
+  border:1px solid rgba(147,179,215,.13);
+  border-radius:20px;
+  box-shadow:0 12px 35px rgba(0,4,15,.16),inset 0 1px 0 rgba(255,255,255,.025);
+  overflow:hidden;
+}
+.card:hover{border-color:rgba(147,179,215,.19)}
+.hd{
+  padding:20px 22px;
+  background:linear-gradient(90deg,rgba(255,255,255,.023),transparent 75%);
+  border-bottom:1px solid rgba(157,187,224,.1);
+  gap:14px;
+}
+.hd h2{font-size:16px;line-height:1.3}
+.hd .hint{margin-top:4px}
+.bd{padding:22px}
+.sep{margin:20px 0;background:rgba(157,187,224,.11)}
+.session-header{padding:4px 1px 2px}
+.session-header h2{font-size:22px;font-weight:800}
+.session-header .hint{font-size:13px;margin-top:3px}
+.session-tabs{gap:10px;padding:2px 0 3px}
+.session-tabs .tab{
+  flex:1 1 135px;min-height:58px;
+  border:1px solid rgba(145,180,220,.15);
+  background:linear-gradient(160deg,#152237,#101b2e);
+  border-radius:14px;color:#bdcde1;
+  font-size:12px;font-weight:750;
+  white-space:normal;padding:12px 13px;
+}
+.session-tabs .tab:hover{border-color:rgba(139,174,255,.5);background:#1b2b42}
+.session-tabs .tab.active{
+  border-color:rgba(111,240,188,.52);
+  color:#b9ffe2;background:linear-gradient(145deg,rgba(111,240,188,.15),rgba(29,82,80,.16));
+  box-shadow:inset 0 0 0 1px rgba(111,240,188,.08),0 7px 25px rgba(25,160,115,.075)
+}
+input[type=text],input[type=date],input[type=url],input[type=number],select,textarea{
+  color:#e9f2ff;background:#0b1525;
+  border:1px solid rgba(147,179,215,.19);border-radius:11px;
+  padding:11px 12px;min-height:41px;font-size:13px;
+  transition:border-color .18s,box-shadow .18s,background .18s;
+}
+input:hover,select:hover,textarea:hover{border-color:rgba(151,191,237,.38)}
+input:focus,select:focus,textarea:focus{
+  border-color:rgba(111,240,188,.7);
+  box-shadow:0 0 0 3px rgba(111,240,188,.075);outline:none;background:#0d1a2b
+}
+input::placeholder,textarea::placeholder{color:#6d8098}
+input[type=checkbox]{accent-color:#6ff0bc}
+label{font-weight:600;color:#b2c2d8}
+.builder-fields label,.profile-grid label,.strength-grid label{font-size:12px;line-height:1.5}
+.builder-section{
+  font:800 14px/1.4 'Manrope',sans-serif;color:#eaf7ff;
+  margin:26px 0 16px;padding:0 0 11px;
+  border-bottom:1px solid rgba(145,180,220,.15)
+}
+.builder-section:first-child{margin-top:0}
+.builder-fields,.profile-grid,.strength-grid{gap:15px}
+.builder-actions{margin-top:24px}
+.builder-preview-day{padding:17px 0}
+.builder-ex-row{padding:9px 0;border-bottom-color:rgba(158,189,225,.09)}
+.exercise{
+  border:1px solid rgba(148,180,216,.14);
+  background:rgba(7,15,28,.26);
+  border-radius:16px;margin-bottom:16px;
+  transition:border-color .2s,box-shadow .2s
+}
+.exercise:hover{border-color:rgba(142,185,230,.3);box-shadow:0 6px 25px rgba(0,5,20,.14)}
+.ex-hd{
+  padding:16px;
+  background:linear-gradient(100deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+  gap:14px
+}
+.ex-name{font-size:15px;font-weight:800;letter-spacing:-.02em}
+.meta{font-size:12px;line-height:1.6}
+.ex-left{align-items:center;gap:14px}
+.thumbs{gap:8px}
+.thumb{
+  width:62px;height:62px;border-radius:12px;
+  border:1px solid rgba(147,179,215,.19);
+  background:#0c1524;color:#93a6be;
+  transition:border-color .18s,transform .18s;
+}
+.thumb:hover{border-color:#7ff0c1;transform:translateY(-2px)}
+.thumb img{transition:transform .3s ease}
+.thumb:hover img{transform:scale(1.07)}
+.ex-actions{gap:8px}
+.table-scroll{scrollbar-color:#344b67 transparent;scrollbar-width:thin}
+table{font-size:12px}
+th,td{padding:11px 9px;border-bottom:1px solid rgba(149,182,217,.11)}
+th{color:#8298b4;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.065em}
+tbody tr:hover{background:rgba(151,191,237,.035)}
+td input[type=number]{min-height:36px;padding:7px 8px}
+.kpi{gap:11px}
+.mini{
+  border:1px solid rgba(143,178,219,.13);
+  background:linear-gradient(145deg,rgba(36,54,78,.48),rgba(16,30,48,.54));
+  border-radius:14px;padding:16px
+}
+.mini .label{font-size:11px;font-weight:650;color:#93a6be}
+.mini .val{font-size:21px;font-weight:800;letter-spacing:-.035em;color:#eafff5}
+.chart-wrap{height:320px}
+.profile-feedback,.builder-warning{
+  border-radius:14px;background:rgba(139,174,255,.045);
+  border-color:rgba(139,174,255,.17);padding:15px
+}
+.builder-warning{background:rgba(255,209,102,.07);border-color:rgba(255,209,102,.22)}
+.profile-pill{background:rgba(255,255,255,.025);border-color:rgba(151,190,228,.15)}
+.muscle-tile{
+  background:linear-gradient(150deg,rgba(31,48,70,.66),rgba(15,26,44,.86));
+  border:1px solid rgba(147,179,215,.16);
+  border-radius:16px;padding:17px;
+  transition:transform .18s,border-color .18s,box-shadow .18s
+}
+.muscle-tile:hover{transform:translateY(-2px);border-color:rgba(111,240,188,.42);box-shadow:0 9px 25px rgba(0,5,20,.16)}
+.muscle-tile.selected{border-color:rgba(111,240,188,.58);background:linear-gradient(150deg,rgba(38,94,84,.35),rgba(17,36,47,.85))}
+.muscle-tile strong{font-size:15px}
+.muscle-metrics b{font-size:20px;font-family:'Manrope',sans-serif}
+.muscle-tag{padding:5px 10px;border-radius:8px}
+.muscle-tag.up{color:#83f2c4;background:rgba(111,240,188,.08)}
+.muscle-tag.down{color:#ffa0ae;background:rgba(255,125,145,.07)}
+.modal{background:rgba(2,6,13,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.modal-card{
+  background:linear-gradient(155deg,#172338,#0f192b);
+  border:1px solid rgba(169,200,236,.23);
+  border-radius:21px;
+  box-shadow:0 28px 90px rgba(0,0,0,.5)
+}
+.modal-hd{padding:17px 20px}
+.modal-bd{padding:20px}
+.modal-image,.video-frame{border-radius:14px}
+.toast{background:#1b3041;border-color:rgba(111,240,188,.27);color:#e8fff4;box-shadow:0 14px 45px #0008}
+.status,.strength-positive{color:#83f2c4}
+@media(max-width:1000px){
+  .cardio-pill .pill-caption{display:none}
+  .top-tabs .tab{padding:11px 13px}
+  .app-header .wrap{padding-top:14px}
+}
+@media(max-width:720px){
+  header.app-header{position:relative}
+  .app-header .wrap{padding-top:16px;padding-bottom:10px}
+  .brand-symbol{width:46px;height:46px;border-radius:14px;font-size:25px}
+  .brand-lockup{gap:11px}
+  .brand-eyebrow{font-size:9px;letter-spacing:.1em}
+  .brand-edition{display:none}
+  .app-header h1{font-size:19px}
+  .brand-sub{font-size:11px}
+  .app-headline{gap:12px}
+  .header-controls{width:100%;justify-content:space-between}
+  .cardio-pill{padding:9px 11px;gap:7px}
+  .cardio-pill b{font-size:11px}
+  .reset-btn{padding:9px 11px}
+  .top-tabs{padding-top:12px;gap:6px}
+  .top-tabs .tab{font-size:12px;padding:10px 12px;min-height:42px}
+  main{padding-top:19px;padding-bottom:45px}
+  .session-header h2{font-size:20px}
+  .session-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .session-tabs .tab{min-height:56px;padding:11px 8px}
+  .card{border-radius:16px}
+  .hd,.bd{padding:16px}
+  .ex-hd{padding:13px}
+  .ex-left{width:100%;gap:10px}
+  .ex-actions{width:100%}
+  .ex-actions .btn{flex:1}
+  .thumb{width:54px;height:54px}
+  .mini{padding:13px}
+  .mini .val{font-size:19px}
+  .chart-wrap{height:270px}
+  .builder-fields,.profile-grid,.strength-grid{grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+}
+@media(max-width:390px){
+  .cardio-pill .pill-symbol{display:none}
+  .cardio-pill b{font-size:10px}
+  .reset-btn span{display:none}
+  .session-tabs .tab{font-size:11px}
+  .ex-name{font-size:13px}
+  .thumb{width:48px;height:48px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
+</style>
 </head>
 <body>
-<header><div class="wrap">
-  <div class="row"><div><h1>Hypertrophie Tracker — Programme 5 jours</h1><div class="sub">Séries, répétitions, charges, RIR, progression et vidéos dans une fenêtre intégrée.</div></div>
-  <div class="flex"><span class="pill">Marche : <b>30 min · 8 % · 6 km/h</b></span><button class="btn danger" id="btnReset">Réinitialiser</button></div></div>
+<header class="app-header"><div class="wrap">
+  <div class="app-headline">
+    <div class="brand-lockup">
+      <div class="brand-symbol" aria-hidden="true"><span>H</span><i></i></div>
+      <div class="brand-copy"><div class="brand-eyebrow"><span class="brand-dot"></span> PERFORMANCE STUDIO <span class="brand-edition">/ TRAINING OS</span></div>
+        <h1>Hypertrophie <span>Tracker</span></h1>
+        <div class="sub brand-sub">Ton entraînement, tes données, ta progression.</div>
+      </div>
+    </div>
+    <div class="header-controls"><span class="pill cardio-pill"><span class="pill-symbol" aria-hidden="true">↗</span><span class="pill-caption">CARDIO POST-SÉANCE</span><b>30 min <em>·</em> 8 % <em>·</em> 6 km/h</b></span><button class="btn danger reset-btn" id="btnReset" title="Réinitialiser les données du tracker">↺ <span>Réinitialiser</span></button></div>
+  </div>
   <nav class="tabs top-tabs" id="tabs" aria-label="Navigation principale"></nav>
 </div></header>
 <main>
