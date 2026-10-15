@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="theme-color" content="#0b0f19">
+  <meta name="theme-color" content="#090909">
   <title>Hypertrophie Tracker — 5 jours</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   <style>
@@ -335,6 +335,160 @@ td input[type=number]{min-height:36px;padding:7px 8px}
   *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}
 }
 
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   THEME NOIR / BLANC / ORANGE — 2026
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root{
+  color-scheme:dark;
+  --bg:#090909;--card:#161616;--text:#fafafa;--muted:#a8a8a8;
+  --accent:#ff831c;--green:#ff9c40;--red:#ff655b;
+  --border:rgba(255,255,255,.13);--radius:20px;
+  --shadow:0 18px 50px rgba(0,0,0,.34);
+  --surface:#171717;--surface-hi:#222222;--mint:#ff8a23;
+}
+body{
+  background:
+    radial-gradient(ellipse 760px 470px at 7% -100px,rgba(255,116,19,.16),transparent 75%),
+    radial-gradient(ellipse 680px 430px at 97% 6%,rgba(255,138,35,.075),transparent 75%),
+    linear-gradient(180deg,#101010 0%,#090909 55%,#0d0d0d 100%);
+  color:#fafafa;
+}
+body::before{
+  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+}
+::selection{background:rgba(255,130,26,.36);color:#fff}
+header.app-header{
+  background:rgba(11,11,11,.91);
+  border-bottom-color:rgba(255,255,255,.12);
+  box-shadow:0 8px 38px rgba(0,0,0,.25);
+}
+.brand-symbol{
+  background:linear-gradient(145deg,#ffb34f 0%,#ff8c24 52%,#eb6500 100%);
+  box-shadow:0 8px 30px rgba(255,125,18,.22),inset 0 1px 1px rgba(255,255,255,.42);
+  color:#19100a;
+}
+.brand-symbol i{background:#fff4e4;border-color:#121212}
+.brand-eyebrow{color:#ffac62}
+.brand-dot{background:#ff922e;box-shadow:0 0 0 4px rgba(255,136,28,.12)}
+.brand-edition{color:#929292}
+.app-header h1 span{color:#ff972f}
+.brand-sub,.sub,.hint,.muted{color:#aaa}
+.header-controls .cardio-pill{
+  border-color:rgba(255,141,40,.28);
+  background:rgba(255,136,28,.065);
+  color:#ddd;
+}
+.cardio-pill .pill-symbol,.cardio-pill .pill-caption{color:#ffa04d}
+.cardio-pill em{color:#a76b3b}
+.btn,.tab,.file-label{
+  border-color:rgba(255,255,255,.15);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.018));
+  color:#f2f2f2;
+}
+.btn:hover,.tab:hover,.file-label:hover{
+  border-color:rgba(255,145,49,.72);
+  background:rgba(255,140,30,.11);
+}
+.btn:focus-visible,.tab:focus-visible,.thumb:focus-visible,.muscle-tile:focus-visible,
+input:focus-visible,select:focus-visible,textarea:focus-visible,.file-label:focus-visible{
+  outline-color:#ff9a3b;
+}
+.btn.primary{
+  color:#17100a;
+  background:linear-gradient(130deg,#ffb95c,#ff8520);
+  border-color:#ffb765;
+  box-shadow:0 6px 22px rgba(255,132,22,.19);
+}
+.btn.primary:hover{
+  background:linear-gradient(130deg,#ffd08b,#ffa046);
+  box-shadow:0 8px 30px rgba(255,132,22,.27);
+}
+.btn.good{color:#ffb46f;border-color:rgba(255,150,55,.32);background:rgba(255,136,28,.09)}
+.btn.danger{color:#ff9c98;border-color:rgba(255,101,91,.34);background:rgba(255,101,91,.07)}
+.top-tabs .tab{color:#aaa}
+.top-tabs .tab:hover{color:#fff;background:rgba(255,255,255,.06)}
+.top-tabs .tab.active{
+  color:#ffad61;
+  background:rgba(255,136,28,.12);
+  border-color:rgba(255,136,28,.32);
+  box-shadow:inset 0 -2px 0 rgba(255,136,28,.86);
+}
+.card{
+  background:linear-gradient(160deg,rgba(28,28,28,.99),rgba(17,17,17,.99) 80%);
+  border-color:rgba(255,255,255,.115);
+  box-shadow:0 12px 35px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.025);
+}
+.card:hover{border-color:rgba(255,255,255,.22)}
+.hd{border-bottom-color:rgba(255,255,255,.1)}
+.sep{background:rgba(255,255,255,.1)}
+.session-tabs .tab{
+  border-color:rgba(255,255,255,.14);
+  background:linear-gradient(160deg,#222,#171717);
+  color:#c9c9c9;
+}
+.session-tabs .tab:hover{border-color:rgba(255,146,48,.5);background:#292019}
+.session-tabs .tab.active{
+  border-color:rgba(255,149,42,.65);
+  color:#ffc38a;
+  background:linear-gradient(145deg,rgba(255,136,28,.18),rgba(74,40,15,.22));
+  box-shadow:inset 0 0 0 1px rgba(255,146,38,.08),0 7px 25px rgba(255,124,15,.075);
+}
+input[type=text],input[type=date],input[type=url],input[type=number],select,textarea{
+  color:#fff;background:#101010;border-color:rgba(255,255,255,.19);
+}
+input:hover,select:hover,textarea:hover{border-color:rgba(255,153,58,.48)}
+input:focus,select:focus,textarea:focus{
+  border-color:rgba(255,151,45,.8);
+  box-shadow:0 0 0 3px rgba(255,139,29,.1);
+  background:#17120e;
+}
+input::placeholder,textarea::placeholder{color:#858585}
+input[type=checkbox]{accent-color:#ff8c24}
+label{color:#c6c6c6}
+.builder-section{color:#fff;border-bottom-color:rgba(255,255,255,.14)}
+.builder-ex-row{border-bottom-color:rgba(255,255,255,.09)}
+.exercise{border-color:rgba(255,255,255,.13);background:rgba(0,0,0,.16)}
+.exercise:hover{border-color:rgba(255,154,50,.34)}
+.ex-hd{background:linear-gradient(100deg,rgba(255,255,255,.045),rgba(255,255,255,.012))}
+.thumb{border-color:rgba(255,255,255,.19);background:#111;color:#aaa}
+.thumb:hover{border-color:#ff992f}
+th,td{border-bottom-color:rgba(255,255,255,.1)}
+th{color:#a5a5a5}
+tbody tr:hover{background:rgba(255,145,40,.045)}
+.mini{
+  border-color:rgba(255,255,255,.12);
+  background:linear-gradient(145deg,rgba(49,39,31,.48),rgba(26,26,26,.6));
+}
+.mini .label{color:#aaa}
+.mini .val{color:#fff}
+.profile-feedback{
+  background:rgba(255,145,38,.055);
+  border-color:rgba(255,145,38,.19);
+}
+.builder-warning{background:rgba(255,145,38,.07);border-color:rgba(255,145,38,.28);color:#ffce98}
+.profile-pill{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.14)}
+.muscle-tile{
+  background:linear-gradient(150deg,rgba(40,36,32,.77),rgba(19,19,19,.92));
+  border-color:rgba(255,255,255,.15);
+}
+.muscle-tile:hover{border-color:rgba(255,146,38,.48)}
+.muscle-tile.selected{
+  border-color:rgba(255,146,38,.68);
+  background:linear-gradient(150deg,rgba(94,51,20,.37),rgba(30,24,20,.85));
+}
+.muscle-tag.up{color:#ffb365;background:rgba(255,141,28,.09);border-color:rgba(255,141,28,.32)}
+.muscle-tag.flat{color:#ffd6a1;border-color:rgba(255,160,56,.3)}
+.modal{background:rgba(0,0,0,.85)}
+.modal-card{
+  background:linear-gradient(155deg,#222,#121212);
+  border-color:rgba(255,255,255,.23);
+}
+.toast{background:#2c2018;border-color:rgba(255,150,42,.3);color:#fff4e9}
+.status,.strength-positive{color:#ffac5b}
+a{color:#ffae63}
+a:hover{color:#ffd0a2}
+
 </style>
 </head>
 <body>
@@ -600,7 +754,7 @@ function renderKpis(){const logs=state.logs,last=[...logs].sort((a,b)=>a.date.lo
 let chart=null;
 function renderSelect(){const sel=$('#exerciseSelect'),last=sel.value||state._lastChosenExerciseId||'bench_press';sel.replaceChildren();const seen=new Set();for(const ex of allExercises()){if(seen.has(ex.id))continue;seen.add(ex.id);const opt=document.createElement('option');opt.value=ex.id;opt.textContent=ex.name;sel.appendChild(opt);}sel.value=seen.has(last)?last:(allExercises()[0]?.id||'');}
 function renderChart(){const exId=$('#exerciseSelect').value,ex=exById(exId),metric=$('#metricSelect').value;state._lastChosenExerciseId=exId;saveState();const data=seriesFor(exId),empty=$('#chartEmpty');if(chart){chart.destroy();chart=null;}const isTime=ex?.unit==='sec';if(isTime&&metric!=='bestReps'){empty.hidden=false;empty.textContent='Pour le gainage, sélectionne « Meilleures répétitions » (durée en secondes).';}else{empty.hidden=!!data.length;empty.textContent=data.length?'':'Aucune séance enregistrée pour cet exercice.';}const canvas=$('#chart');canvas.hidden=!data.length||typeof Chart==='undefined'||(isTime&&metric!=='bestReps');
- if(data.length&&(!isTime||metric==='bestReps')&&typeof Chart!=='undefined'){chart=new Chart(canvas.getContext('2d'),{type:'line',data:{labels:data.map(x=>x.date),datasets:[{label:{bestWeight:'Charge (kg)',bestE1RM:'1RM estimé (kg)',volume:'Volume (kg × reps)',bestReps:'Répétitions maximales'}[metric],data:data.map(x=>x[metric]),borderColor:'#7aa2ff',backgroundColor:'#7aa2ff',tension:.25,borderWidth:2},{label:'Charge de référence (kg)',data:data.map(x=>metric==='volume'?null:x.refWeight),borderColor:'#7affc8',borderDash:[5,5],tension:0,pointRadius:2,spanGaps:false,hidden:metric==='volume'||metric==='bestReps'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#eaf0ff'}}},scales:{x:{ticks:{color:'#a8b3cf'},grid:{color:'#ffffff12'}},y:{ticks:{color:'#a8b3cf'},grid:{color:'#ffffff12'}}}}});}
+ if(data.length&&(!isTime||metric==='bestReps')&&typeof Chart!=='undefined'){chart=new Chart(canvas.getContext('2d'),{type:'line',data:{labels:data.map(x=>x.date),datasets:[{label:{bestWeight:'Charge (kg)',bestE1RM:'1RM estimé (kg)',volume:'Volume (kg × reps)',bestReps:'Répétitions maximales'}[metric],data:data.map(x=>x[metric]),borderColor:'#ff8a24',backgroundColor:'#ff8a24',tension:.25,borderWidth:2},{label:'Charge de référence (kg)',data:data.map(x=>metric==='volume'?null:x.refWeight),borderColor:'#fff1e2',borderDash:[5,5],tension:0,pointRadius:2,spanGaps:false,hidden:metric==='volume'||metric==='bestReps'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#ffffff'}}},scales:{x:{ticks:{color:'#a9a9a9'},grid:{color:'#ffffff12'}},y:{ticks:{color:'#a9a9a9'},grid:{color:'#ffffff12'}}}}});}
  else if(data.length&&typeof Chart==='undefined'){empty.hidden=false;empty.textContent='Graphique indisponible : impossible de charger Chart.js (connexion Internet nécessaire).';}
  const last=data.at(-1),ref=state.refWeights[exId]??ex?.refWeight;$('#lastPerfHint').textContent=last?`Dernière entrée : ${last.date} · ${isTime?'Durée maximale : '+last.bestReps+' s':'Charge max : '+last.bestWeight+' kg · e1RM : '+last.bestE1RM+' kg'} · Référence actuelle : ${ref} ${ex?.unit||''}.`:'Enregistre une séance pour commencer ton suivi.';}
 function renderRight(){renderKpis();renderSelect();renderChart();}
@@ -806,7 +960,7 @@ function renderMuscles(){const report=groupPerformanceReport(),r=cycleReport(),s
  const weeks=Array.from({length:6},(_,i)=>5-i),labels=weeks.map(n=>n===0?'Cette semaine':'S−'+n),values=weeks.map(n=>muscleSnapshot(recentLogs(7,n*7))[selectedMuscleGroup].sets);
  const empty=$('#muscleChartEmpty'),canvas=$('#muscleChart');if(muscleChart){muscleChart.destroy();muscleChart=null;}
  const hasData=values.some(x=>x>0);empty.hidden=hasData&&typeof Chart!=='undefined';empty.textContent=hasData?'Graphique indisponible (Chart.js nécessite une connexion).':'Pas encore de séries enregistrées pour ce groupe.';canvas.hidden=!hasData||typeof Chart==='undefined';
- if(!canvas.hidden)muscleChart=new Chart(canvas.getContext('2d'),{type:'bar',data:{labels,datasets:[{label:'Séries terminées',data:values,backgroundColor:'#7aa2ff',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#eaf0ff'}}},scales:{x:{ticks:{color:'#a8b3cf'},grid:{color:'#ffffff12'}},y:{beginAtZero:true,ticks:{precision:0,color:'#a8b3cf'},grid:{color:'#ffffff12'}}}}});
+ if(!canvas.hidden)muscleChart=new Chart(canvas.getContext('2d'),{type:'bar',data:{labels,datasets:[{label:'Séries terminées',data:values,backgroundColor:'#ff8a24',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#ffffff'}}},scales:{x:{ticks:{color:'#a9a9a9'},grid:{color:'#ffffff12'}},y:{beginAtZero:true,ticks:{precision:0,color:'#a9a9a9'},grid:{color:'#ffffff12'}}}}});
  const detail=$('#muscleExerciseDetails');detail.replaceChildren();const title=document.createElement('h3');title.textContent='Évolution des exercices comparables';title.style.fontSize='14px';detail.appendChild(title);
  if(!g.comparables.length){const note=document.createElement('p');note.className='hint';note.textContent='Il faut au moins deux séances de chaque côté pour comparer le même exercice. Les exercices remplacés ne sont pas comparés entre eux.';detail.appendChild(note);}
  else{const table=document.createElement('table');table.className='muscle-table';const head=document.createElement('thead'),hr=document.createElement('tr');for(const name of ['Exercice','Avant (e1RM)','Actuel (e1RM)','Évolution']){const th=document.createElement('th');th.textContent=name;hr.appendChild(th);}head.appendChild(hr);const body=document.createElement('tbody');for(const ex of g.comparables){const tr=document.createElement('tr');for(const value of [ex.name,ex.baseline.toFixed(1)+' kg',ex.now.toFixed(1)+' kg',(ex.trend>=0?'+':'')+(ex.trend*100).toFixed(1)+' %']){const td=document.createElement('td');td.textContent=value;tr.appendChild(td);}body.appendChild(tr);}table.append(head,body);detail.appendChild(table);}
